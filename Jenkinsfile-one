@@ -3,6 +3,11 @@ pipeline {
 
     stages{
         stage("git checkout"){
+            when{
+               expression{
+                  params.BranchName == "develop"
+                }
+            }
             steps {
                 git branch: "${params.BranchName}", credentialsId: 'github-creds', url: 'https://github.com/cloudenguk/hr-api'
             }
